@@ -1,0 +1,4 @@
+[submodule "main/include/datalogger"]
+	path = main/include/datalogger
+	url = https://github.com/WesleyJoseSantos/datalogger.git
+	branch = master
