@@ -9,25 +9,7 @@
  * 
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include "esp_vfs.h"
-#include "esp_vfs_fat.h"
-#include "freertos/task.h"
-
-#include "config.h"
-#include "datalogger.h"
-#include "esp_http_server.h"
-#include "esp_wifi.h"
-#include "nvs_flash.h"
-
-typedef struct remote_databox
-{
-    wl_handle_t vfs_fat;
-    httpd_handle_t http_server;  
-} remote_databox_t;
+#include "main.h"
 
 static remote_databox_t databx;
 
