@@ -28,13 +28,12 @@
     .ssid = "Remote Databox",           \
     .password = "administrator",        \
     .authmode = WIFI_AUTH_WPA2_PSK,     \
-    .max_connection = 1                 \
+    .max_connection = 4                 \
 }
 
 #define CONFIG_WIFI_STA() {         \
     .ssid = "CABO CANAVERAL 3",     \
     .password = "16192020",         \
-    .max_connection = 1,            \
 }
 
 #endif  //!__CONFIG__H__
