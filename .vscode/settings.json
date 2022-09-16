@@ -11,6 +11,7 @@
         "task.h": "c",
         "http_parser.h": "c",
         "freertos.h": "c",
-        "esp_compiler.h": "c"
+        "esp_compiler.h": "c",
+        "nvs_flash.h": "c"
     },
 }
