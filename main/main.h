@@ -29,7 +29,6 @@
 typedef struct remote_databox
 {
     wl_handle_t vfs_fat;
-    httpd_handle_t http_server;  
 } remote_databox_t;
 
 #endif  //!__MAIN__H__

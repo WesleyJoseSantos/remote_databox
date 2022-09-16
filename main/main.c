@@ -11,22 +11,18 @@
 
 #include "main.h"
 
-static remote_databox_t databx;
+static remote_databox_t databox;
 
 static const char *TAG = "main";
 
 static void nvs_init(void);
 static void vfs_fat_init(void);
-static void http_server_start(void);
-static void wifi_ap_start(void);
 
 void app_main(void)
 {
     nvs_init();
     vfs_fat_init();
     datalogger_init();
-    http_server_start();
-    wifi_ap_start();
 }
 
 static void nvs_init(void)
@@ -46,38 +42,11 @@ static void nvs_init(void)
 static void vfs_fat_init(void)
 {
     esp_vfs_fat_mount_config_t mount_cfg = CONFIG_VFS_FAT_MOUNT();
-    esp_err_t err = esp_vfs_fat_spiflash_mount(CONFIG_BASEPATH, "data", &mount_cfg, &databx.vfs_fat);
+    esp_err_t err = esp_vfs_fat_spiflash_mount(CONFIG_BASEPATH, "data", &mount_cfg, &databox.vfs_fat);
 
     if (err != ESP_OK) {
         ESP_LOGE(TAG, "Failed to mount partition FATFS (%s)", esp_err_to_name(err));
     }else{
         ESP_LOGI(TAG, "FATFS partition successfully mounted.");
     }
-}
-
-static void http_server_start(void)
-{
-    httpd_config_t httpd_config = HTTPD_DEFAULT_CONFIG();
-
-    int err = httpd_start(databx.http_server, &httpd_config);
-
-    if(err == ESP_OK)
-    {
-        ESP_LOGI(TAG, "Http server started on port '%d'", httpd_config.server_port);
-    }
-    else
-    {
-        ESP_LOGE(TAG, "Failed to start http server [%d]", err);
-    }
-}
-
-static void wifi_ap_start(void)
-{
-    wifi_init_config_t init_cfg = WIFI_INIT_CONFIG_DEFAULT();
-    wifi_ap_config_t ap = CONFIG_WIFI_AP();
-
-    ESP_ERROR_CHECK(esp_wifi_init(&init_cfg));
-    ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_AP));
-    ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_AP, (wifi_config_t*)&ap));
-    ESP_ERROR_CHECK(esp_wifi_start());
 }
