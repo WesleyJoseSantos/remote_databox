@@ -15,12 +15,6 @@
 #include "tasks_common.h"
 #include "esp_bit_defs.h"
 
-#define HTTP_SERVER_STARTED_BIT BIT0
-#define WIFI_AP_ON_BIT BIT1
-#define WIFI_AP_CONNECTED_BIT BIT2
-#define WIFI_STA_CONNECTED_BIT BIT3
-#define MQTT_CONNECTED_BIT BIT4
-
 typedef struct net_app
 {
     EventGroupHandle_t event_group;
@@ -98,7 +92,6 @@ static void net_app_mqtt_start(esp_mqtt_client_config_t *cfg)
 {
     char client_id[32];
     sprintf(client_id, "%s%u", "databox_", esp_random());
-    xEventGroupClearBits(this.event_group, MQTT_CONNECTED_BIT);
     ESP_ERROR_CHECK(esp_mqtt_client_start(this.mqtt));
 }
 
