@@ -38,14 +38,6 @@ typedef union net_app_interface_cfg
     esp_mqtt_client_config_t mqtt;
 } net_app_interface_cfg_t;
 
-typedef struct net_app_cfg
-{
-    httpd_config_t http_server;
-    wifi_ap_config_t wifi_ap;
-    wifi_sta_config_t wifi_sta;
-    esp_mqtt_client_config_t mqtt;
-} net_app_cfg_t;
-
 /**
  * @brief Sends a message to network queue
  * 
